@@ -1,6 +1,12 @@
-# ⚡ PokéBattle — Type Effectiveness Arena
+# ⚡ PokéBattle - Type Effectiveness Arena
 
 A single-page React application that loads random Pokémon from the [PokéAPI](https://pokeapi.co), compares them by type effectiveness, and tracks battle results.
+
+---
+
+## 🚀 Live Demo
+
+**[https://pokebattlenow.netlify.app/](https://pokebattlenow.netlify.app/)**
 
 ---
 
@@ -45,7 +51,36 @@ npm run dev
 
 Then open `http://localhost:5173` in your browser.
 
-> **Note:** Fonts (`Press Start 2P` and `Rajdhani`) are loaded from Google Fonts — a working internet connection is required.
+> **Note:** Fonts (`Press Start 2P` and `Rajdhani`) are loaded from Google Fonts - a working internet connection is required.
+
+---
+
+## Running Tests
+
+The project uses [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/).
+
+```bash
+# Run all tests once
+npm test
+
+# Run in watch mode (re-runs on file changes)
+npm run test:watch
+
+# Run with coverage report
+npm run coverage
+```
+
+### What's Tested
+
+| File | Coverage |
+|---|---|
+| `src/utils.js` | `randomInt`, `calcBaseStatTotal`, `capitalise`, `getSpriteUrl` |
+| `src/constants.js` | `MAX_POKEMON_ID`, `TYPE_COLORS`, `RESULT_CONFIG` shape & values |
+| `src/hooks/usePokemonBattle.js` | Initial state, first/second load flow, battle results, champion tracking, error handling |
+| `src/components/ResultBanner.jsx` | All four result strings, fallback, accessibility role |
+| `src/components/Scoreboard.jsx` | Score display, zero state, aria label |
+| `src/components/ChampionStrip.jsx` | Null guard, name, BST, sprite, aria label |
+| `src/components/PokemonCard.jsx` | Placeholder, stats, type badges, champion badge, dual-type |
 
 ---
 
@@ -96,7 +131,7 @@ React re-renders a component every time its state or props change. Without optim
 ## Comparison Logic
 
 ```
-newType === prevType                        →  "TYPE MATCH!"
+newType === prevType                       →  "TYPE MATCH!"
 newType.double_damage_to ∋ prevType        →  "NEW POKÉMON WINS!"
 newType.double_damage_from ∋ newType       →  "PREVIOUS POKÉMON WINS!"
 prevType.double_damage_to ∋ newType        →  "PREVIOUS POKÉMON WINS!"
